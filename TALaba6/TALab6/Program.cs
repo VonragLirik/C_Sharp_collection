@@ -192,10 +192,6 @@ namespace TALab6 {
 
             // Сортируем по возрастанию вершин для удобства
             classesArray = classesArray.OrderBy(q => q[0]).ToList();
-            Console.WriteLine();
-            foreach (var classesArrayItem in classesArray) {
-                Console.WriteLine("{ " + string.Join(", ", classesArrayItem) + " }");
-            }
 
             /////////////////////////////////////////////////////////////////
             // Формируем таблицу по получившимся классам
@@ -203,7 +199,7 @@ namespace TALab6 {
             // пробегаемся по строчке из таблицы это вершины и ищем в каком классе выходная вершина
             // записываем найденный индекс в новую табличку
             List<List<string>> minimizedTableStates = new List<List<string>>();
-            foreach(var classesArrayItem in classesArray) {
+            foreach (var classesArrayItem in classesArray) {
                 int.TryParse(classesArrayItem[0].Split("q")[1], out int stateIndex);
                 List<string> minimizedTableStatesLine = new List<string>();
                 foreach (var state in tableStates[stateIndex]) {
@@ -213,8 +209,9 @@ namespace TALab6 {
                 minimizedTableStates.Add(minimizedTableStatesLine);
             }
             Console.WriteLine();
-            foreach (var minimizedTableStatesLine in minimizedTableStates) {
-                Console.WriteLine(string.Join(", ", minimizedTableStatesLine));
+            Console.WriteLine("\t\t" + string.Join("   ", alphabet));
+            foreach (var (minimizedTableStatesLine, index) in minimizedTableStates.WithIndex()) {
+                Console.WriteLine("{ " + string.Join(", ", classesArray[index]) + " }" + $"{(classesArray[index].Count == 1 ? "\t" : "")}\t" + string.Join(", ", minimizedTableStatesLine));
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -286,8 +283,14 @@ namespace TALab6 {
             } else {
                 // иначе проверяем содержит ли последнее состояние
                 // если да, то true, иначе false
-                return endStates.Find(e => e == ("q"+ startState)) != null;
+                return endStates.Find(e => e == ("q" + startState)) != null;
             }
         }
+
     }
+}
+
+static class MyExtensions {
+    public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> array) =>
+        array.Select((item, index) => (item, index));
 }
