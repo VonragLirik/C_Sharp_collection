@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Collections.Generic;
 
+// Создать программу для минимизации детерминированного автомата
+// Затем бесконечно проверять цепочку по преобразованному автомату
+
 namespace TALab6 {
     class Program {
         static void Main() {
