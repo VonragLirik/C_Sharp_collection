@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "evrAlglaba3", "evrAlglaba3\evrAlglaba3.csproj", "{9B6F28CB-0EBF-4663-8E5A-50544F8033AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B6F28CB-0EBF-4663-8E5A-50544F8033AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6F28CB-0EBF-4663-8E5A-50544F8033AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6F28CB-0EBF-4663-8E5A-50544F8033AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6F28CB-0EBF-4663-8E5A-50544F8033AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1A230CC-B57B-40DF-BFF6-DE73D9948077}
+	EndGlobalSection
+EndGlobal

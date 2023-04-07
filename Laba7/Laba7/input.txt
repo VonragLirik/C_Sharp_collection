@@ -1,0 +1,10 @@
+﻿person.AddName("Никита")
+name = person.AddName("Алексей")
+name = person.name
+person.AddName("Коля")
+person.name = "Валера"
+person.age = 10
+age = person.age
+car.countOfWheels = 5
+car.ChangeCountOfWheels(10)
+age = person.age1

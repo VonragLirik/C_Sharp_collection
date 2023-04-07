@@ -1,0 +1,10 @@
+﻿Browser, vk.com, 05-11-2023 11:35, 50, Vasia
+Browser, vk.com, 05-12-2023 14:35, 70, Kirill
+Browser, gmail.ru, 06-11-2023 11:35, 150, Alex
+Browser, ya.ru, 01-11-2023 02:35, 250, Pasha
+Server, ya.ru, 05-11-2023 11:35, 500, Kirill
+Server, go.com, 05-01-2023 11:35, 20, Kirill
+Browser, google.com, 05-11-2023 08:35, 2250, Nikita
+Browser, postgres.ru, 05-10-2023 11:36, 5450, Kirill
+Browser, wiki.ru, 05-09-2023 05:45, 4450, Olya
+Browser, vk.com, 05-08-2023 19:35, 6650, Kirill
