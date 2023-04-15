@@ -128,7 +128,7 @@ namespace TALab6 {
             }
             classesArray.Add(secondClass);
 
-            // Приступаем к проверки классом
+            // Приступаем к проверке классов
             bool haveChanges = true;
             while (haveChanges) {
                 bool isChangedClasses = false;
@@ -147,7 +147,6 @@ namespace TALab6 {
                                 // если вызываемая вершина вне класса, то запоминаем её
                                 if (classesArrayItem.Find(c => c == tableStates[calledStateIndex][alphabetSymbolIndex]) == null) {
                                     errorStates.Add(new List<string>() { classesArrayItemState, tableStates[calledStateIndex][alphabetSymbolIndex], indexOfClassState.ToString() });
-
                                 }
                             }
                             if (errorStates.Count > 0) {
@@ -160,7 +159,7 @@ namespace TALab6 {
                                         errorStatesLikeFirstWithAllInfo.Add(errorStatesItem);
                                     }
                                 }
-                                // если еще нет такого класса до добавляем
+                                // если еще нет такого класса то добавляем
                                 if (classesArray.FindIndex(c => IsEqualArrays(c, errorStatesLikeFirst)) == -1) {
                                     // выносим в отдельный класс
                                     classesArray.Add(errorStatesLikeFirst);
@@ -209,6 +208,7 @@ namespace TALab6 {
                 minimizedTableStates.Add(minimizedTableStatesLine);
             }
             Console.WriteLine();
+            Console.WriteLine("Таблица минимизированного автомата");
             Console.WriteLine("\t\t" + string.Join("   ", alphabet));
             foreach (var (minimizedTableStatesLine, index) in minimizedTableStates.WithIndex()) {
                 Console.WriteLine("{ " + string.Join(", ", classesArray[index]) + " }" + $"{(classesArray[index].Count == 1 ? "\t" : "")}\t" + string.Join(", ", minimizedTableStatesLine));
@@ -218,7 +218,7 @@ namespace TALab6 {
             // Проверка цепочки по получившемуся автомату
             bool isWorkWhile = true;
             while (isWorkWhile) {
-                Console.WriteLine("Введите цепочку");
+                Console.WriteLine("\nВведите цепочку");
                 string chain = Console.ReadLine();
                 bool isCorrectChain = true;
                 if (chain.Length == 0) {
