@@ -55,7 +55,9 @@ namespace TALab7 {
                 CheckHasAlphabetItemsInLine(terminalAlphabet, noTerminalAlphabet, leftRule);
                 Console.WriteLine("Введите правую часть правила:");
                 string rightRule = Console.ReadLine();
-                CheckHasAlphabetItemsInLine(terminalAlphabet, noTerminalAlphabet, rightRule);
+                if (rightRule != "E") {
+                    CheckHasAlphabetItemsInLine(terminalAlphabet, noTerminalAlphabet, rightRule);
+                }
                 rulesArray.Add(new List<string>() { leftRule, rightRule });
                 Console.WriteLine("Чтобы завершить ввод правил нажмите -, иначе любой другой символ");
                 continueWorkSymbol = Console.ReadLine();
@@ -85,6 +87,10 @@ namespace TALab7 {
                     isRulesTypeThree = false;
                     // если один нетерминальный, но не первый и не последний
                 } else if (countOfNoTerminalSymbolsRightRule == 1 && !(char.IsUpper(rule[1][0]) || char.IsUpper(rule[1][rule[1].Length - 1]))) {
+                    isRulesTypeThree = false;
+                }
+
+                if (rule[1] == "E") {
                     isRulesTypeThree = false;
                 }
             }
