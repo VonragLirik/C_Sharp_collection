@@ -132,7 +132,7 @@ namespace EvrAlgLaba6 {
                     List<List<int>> newPopulation = CrossoverProcess(countOfTasks, new List<List<int>>(), firstRandomSplitIndex, secondRandomSplitIndex, indexOfFirstChild, indexOfSecondChild, populations);
                     //////////////кроссовер закончился, создана проверяемая популяция, переходим к мутации
                     AddTasksToProcessorsAndFindMaxValue(countOfProcessors, newPopulation);
-                    MutationProcess(countOfTasks, newPopulation);
+                    MutationProcess(countOfTasks, newPopulation, countOfProcessors, tasksArray);
                     int maxSumInProcessorsNewPopulation = AddTasksToProcessorsAndFindMaxValue(countOfProcessors, newPopulation);
                     minmaxTmpArray.Add(maxSumInProcessorsNewPopulation);
 
@@ -151,7 +151,7 @@ namespace EvrAlgLaba6 {
                     }
                     List<List<int>> newSecondPopulation = CrossoverProcess(countOfTasks, new List<List<int>>(), firstRandomSplitIndex, secondRandomSplitIndex, indexOfSecondChild, indexOfFirstChild, populations);
                     AddTasksToProcessorsAndFindMaxValue(countOfProcessors, newSecondPopulation);
-                    MutationProcess(countOfTasks, newSecondPopulation);
+                    MutationProcess(countOfTasks, newSecondPopulation, countOfProcessors, tasksArray);
                     int maxSumInProcessorsNewSecondPopulation = AddTasksToProcessorsAndFindMaxValue(countOfProcessors, newSecondPopulation);
                     minmaxTmpArray.Add(maxSumInProcessorsNewSecondPopulation);
 
@@ -251,9 +251,9 @@ namespace EvrAlgLaba6 {
             return (int)Math.Floor((double)workNumber / divider);
         }
 
-        static void MutationProcess(int countOfTasks, List<List<int>> population) {
+        static void MutationProcess(int countOfTasks, List<List<int>> population, int countOfProcessors, List<List<int>> tasksArray) {
             Random random = new Random();
-            bool shouldBeMutation = random.Next(0, 100) < 80;
+            bool shouldBeMutation = random.Next(0, 100) < 25;
             if (shouldBeMutation) {
                 int randomIndexForMutation = random.Next(1, countOfTasks - 1);
                 // [задача, ген][]
@@ -282,9 +282,20 @@ namespace EvrAlgLaba6 {
                 arr[firstRandomIndexForMutationInvert] = temp;
                 string changedWorkGenTo2 = new string(arr);
                 int changedGen = Convert.ToInt32(changedWorkGenTo2, 2);
-                Console.WriteLine("Мутация: было задание " + population[randomIndexForMutation][0] + ", ген = " + workGen + ". Стал ген = " + changedGen);
+                Console.WriteLine("Мутация: индекс из матрицы заданий(от 1) " + (randomIndexForMutation + 1) + ", было задание " + population[randomIndexForMutation][0] + ", ген = " + workGen + ". Стал ген = " + changedGen);
                 Console.WriteLine("Мутация: было " + workGenTo2 + ", стало: " + changedWorkGenTo2);
-                population[randomIndexForMutation][1] = changedGen;
+                int processorIndexOfPrevGen = GetIndexOfProcessorByGen(countOfProcessors, workGen);
+                int processorIndexOfNewGen = GetIndexOfProcessorByGen(countOfProcessors, changedGen);
+                // если номер процессора не поменялся после изменения гена - просто меняем ген
+                if (processorIndexOfPrevGen == processorIndexOfNewGen) {
+                    Console.WriteLine("Мутация: номер процессора НЕ поменялся, просто меняем ген на " + changedGen);
+                    population[randomIndexForMutation][1] = changedGen;
+                    // иначе задание берем из не однородной матрицы и меняем на новый ген
+                } else {
+                    Console.WriteLine("Мутация: номер процессора от 1 поменялся (c " + (processorIndexOfPrevGen + 1) + " на " + (processorIndexOfNewGen + 1) + ") , меняем задание на " + tasksArray[randomIndexForMutation][processorIndexOfNewGen] + "(было задание " + population[randomIndexForMutation][0] + " ) и ген на " + changedGen);
+                    population[randomIndexForMutation][0] = tasksArray[randomIndexForMutation][processorIndexOfNewGen];
+                    population[randomIndexForMutation][1] = changedGen;
+                }
             } else {
                 Console.WriteLine("!!!!!Мутация не произошла, ничего не изменилось");
             }
