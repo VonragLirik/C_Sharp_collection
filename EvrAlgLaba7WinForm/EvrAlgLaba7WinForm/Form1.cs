@@ -7,6 +7,8 @@ using System.Reflection;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.GraphViewerGdi;
 
+// Реализация модифицированного алгоритма Голдберга для решения задачи коммивояжера
+
 namespace EvrAlgLaba7WinForm {
     public class Visualizer {
         public Visualizer() {
@@ -24,6 +26,7 @@ namespace EvrAlgLaba7WinForm {
             form.WindowState = FormWindowState.Maximized;
             var graph = new Graph("Graph");
             graph.Attr.BackgroundColor = Color.LightSkyBlue;
+            graph.Attr.OptimizeLabelPositions = true;
 
             Console.WriteLine("Решение однородной минимаксной задачи с помощью модифицированной модели выбора");
             Console.WriteLine("Введите количество вершин");

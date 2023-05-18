@@ -10,7 +10,8 @@ using System.Reflection;
 namespace Laba7 {
     class Program {
         static void Main() {
-            string currentPath = Path.GetDirectoryName("C:/Users/user/source/repos/laba7/laba7/");
+            Console.WriteLine("Laba 6, variant 2, интерпритатор выражений");
+            string currentPath = Path.GetDirectoryName("C:/Users/user/source/repos/C_Sharp_collection/Laba6/Laba7/input.txt");
             string inputFileName = "\\input.txt";
             if (!File.Exists(currentPath + inputFileName)) {
                 Console.WriteLine("File not found!");
@@ -186,6 +187,8 @@ namespace Laba7 {
                     }
                 }
             }
+
+            Console.ReadLine();
         }
 
         class Person {
